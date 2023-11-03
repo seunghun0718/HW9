@@ -1,0 +1,27 @@
+class cmonsterball {
+  cmonsterball(float p, float q) {
+    x=p;
+    y=q;
+    d=random(1, 6);
+    vx=7;
+    vy=random(-3, 2);
+  }
+  float x, y, d, vx, vy;
+  int col;
+  cmonsterball(float r) {
+    x=random(width);
+    y=random(height);
+    d=r;
+    vx=random(-5, 1);
+    vy=-vx;
+  }
+  void act() {
+    x+=vx;
+    y+=vy;
+    if (x < 0 || x > width) vx = -vx;
+    if (y < 0||y>height) vy = -vy;
+  }
+  void Life() {
+    monsterball(x, y, d);
+  }
+}
