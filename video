@@ -1,6 +1,6 @@
 cpuppy [] a;
 cmonsterball [] b;
-void setup() {
+void setup(){
   size(800,800);
   a=new cpuppy[6];
   b=new cmonsterball[6];
@@ -12,33 +12,36 @@ void setup() {
   }
 }
 void draw(){
-    background(204,153,255);
-    for (int i=0; i<6; i++) {
+  background(204,153,255);
+  for (int i=0; i<6; i++) {
     a[i].Life();
     a[i].act();
     b[i].Life();
     b[i].act();
-    for (int j=0; j<6; j++) {
-      float dis1 = sqrt((a[i].x-a[j].x)*(a[i].x-a[j].x)+(a[i].y-a[j].y)*(a[i].y-a[j].y));
-      float dis2 = sqrt((b[i].x-b[j].x)*(b[i].x-b[j].x)+(b[i].y-b[j].y)*(b[i].y-b[j].y));
-      if(dis1<10*(a[i].d+a[j].d)){
-        float tmp=a[i].vx;
-        float tmp2=a[i].vy;
-        a[i].vx=-a[j].vx;
-        a[i].vy=-a[j].vy;
-        a[j].vx=-tmp;
-        a[j].vy=-tmp2;
+  }  
+  for (int i = 0; i < 6; i++) {
+    for (int j = i + 1; j < 6; j++) {
+      float dis1 = dist(a[i].x, a[i].y, a[j].x, a[j].y);
+      float dis2 = dist(b[i].x, b[i].y, b[j].x, b[j].y);
+      if (dis1 < 10 * (a[i].d + a[j].d)) {
+        float temp = a[i].vx;
+        float temp2 = a[i].vy;
+        a[i].vx = -a[j].vx;
+        a[i].vy = -a[j].vy;
+        a[j].vx = -temp;
+        a[j].vy = -temp2;
       }
-      if(dis2<10*(b[i].d+b[j].d)){
-        float tmp3=b[i].vx;
-        float tmp4=b[i].vy;
-        b[i].vx=-b[j].vx;
-        b[i].vy=-b[j].vy;
-        b[j].vx=-tmp3;
-        b[j].vy=-tmp4;
+      if (dis2 < 10 * (b[i].d + b[j].d)) {
+        float temp3 = b[i].vx;
+        float temp4 = b[i].vy;
+        b[i].vx = -b[j].vx;
+        b[i].vy = -b[j].vy;
+        b[j].vx = -temp3;
+        b[j].vy = -temp4;
       }
-      float distance = sqrt((a[i].x-b[j].x)*(a[i].x-b[j].x)+(a[i].y-b[j].y)*(a[i].y-b[j].y));
-      if (distance <10*(a[i].d+b[j].d)) {
+      
+      float distance = dist(a[i].x, a[i].y, b[j].x, b[j].y);
+      if (distance < 10 * (a[i].d + b[j].d)) {
         float tempVx = a[i].vx;
         float tempVy = a[i].vy;
         a[i].vx = -b[j].vx;
