@@ -2,7 +2,7 @@ class cpuppy {
   cpuppy(float p, float q, float r) {
     x=p;
     y=q;
-    d=r*5;
+    d=r*3;
     vx=random(-3, 3);
     vy=random(-2, 2);
   }
